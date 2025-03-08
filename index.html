@@ -33,5 +33,15 @@
     <!-- JS do Fotorama -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.js"></script>
 
+    <!-- Script para evitar ações ao clicar nos slides -->
+    <script>
+        $(document).ready(function() {
+            // Desativa qualquer ação ao clicar nas imagens
+            $('.fotorama__img').on('click', function(e) {
+                e.preventDefault(); // Impede qualquer ação padrão
+                e.stopPropagation(); // Impede a propagação do evento
+            });
+        });
+    </script>
 </body>
 </html>
