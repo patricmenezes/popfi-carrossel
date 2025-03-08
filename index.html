@@ -5,87 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PopFi Carrossel</title>
     
-    <!-- CSS do Fotorama -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.css" rel="stylesheet">
+    <!-- CSS do Slick Carousel -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
     
     <!-- Estilos personalizados -->
     <style>
-        /* Ajusta o tamanho das miniaturas */
-        .fotorama .fotorama__nav--thumbs .fotorama__nav__frame {
-            padding: 2px;
-            height: 64px;
+        .slick-slide img {
+            width: 100%;
+            height: auto;
+            max-width: 800px; /* Ajuste o tamanho máximo conforme necessário */
+            margin: 0 auto;
         }
-        .fotorama .fotorama__thumb-border {
-            height: 60px;
-            border-width: 2px;
-            margin-top: 2px;
+        .slick-prev:before,
+        .slick-next:before {
+            color: black; /* Cor das setas de navegação */
         }
-        /* Ajusta o tamanho do contêiner */
-        .fotorama__wrap {
-            max-width: 100%;
-            width: auto !important;
+        .slick-dots li button:before {
+            color: black; /* Cor dos dots de navegação */
         }
     </style>
 </head>
 <body>
 
     <center>
-        <!-- Carrossel Fotorama -->
-        <div class="fotorama" 
-            data-nav="thumbs" 
-            data-loop="true" 
-            data-autoplay="true" 
-            data-transition="fade" 
-            data-allowfullscreen="true" 
-            data-width="100%" 
-            data-maxwidth="1200" 
-            data-fit="contain">
-            
+        <!-- Carrossel Slick -->
+        <div class="carrossel">
             <!-- 1ª imagem com link para www.popfi.com.br -->
-            <a href="https://www.popfi.com.br" target="_blank">
-                <img src="https://popfi.com.br/admin/midia/2f67aa6f8f73d6cefbffd3cc6392bb7b.png" data-caption="PopFi">
-            </a>
+            <div>
+                <a href="https://www.popfi.com.br" target="_blank">
+                    <img src="https://popfi.com.br/admin/midia/2f67aa6f8f73d6cefbffd3cc6392bb7b.png" alt="Imagem 1">
+                </a>
+            </div>
             
             <!-- 2ª imagem com link para o Facebook -->
-            <a href="https://www.facebook.com/lamodasquarairs" target="_blank">
-                <img src="https://popfi.com.br/admin/midia/1ed987cc110e2b78715c6335e8cca3fc.png" data-caption="Facebook">
-            </a>
+            <div>
+                <a href="https://www.facebook.com/lamodasquarairs" target="_blank">
+                    <img src="https://popfi.com.br/admin/midia/1ed987cc110e2b78715c6335e8cca3fc.png" alt="Imagem 2">
+                </a>
+            </div>
             
             <!-- 3ª imagem com link para www.popfi.com.br -->
-            <a href="https://www.popfi.com.br" target="_blank">
-                <img src="https://popfi.com.br/admin/midia/940df51e332829a6c1e90191960ab432.png" data-caption="PopFi">
-            </a>
+            <div>
+                <a href="https://www.popfi.com.br" target="_blank">
+                    <img src="https://popfi.com.br/admin/midia/940df51e332829a6c1e90191960ab432.png" alt="Imagem 3">
+                </a>
+            </div>
             
             <!-- 4ª imagem com link para Inverti Digital -->
-            <a href="https://invertidigital.com.br/" target="_blank">
-                <img src="https://popfi.com.br/admin/midia/f38507095109ca7d3b4052ffef571aed.png" data-caption="Inverti Digital">
-            </a>
+            <div>
+                <a href="https://invertidigital.com.br/" target="_blank">
+                    <img src="https://popfi.com.br/admin/midia/f38507095109ca7d3b4052ffef571aed.png" alt="Imagem 4">
+                </a>
+            </div>
             
             <!-- 5ª imagem com link para www.popfi.com.br -->
-            <a href="https://www.popfi.com.br" target="_blank">
-                <img src="https://popfi.com.br/admin/midia/a2ce82442eba86270c325711349068b6.png" data-caption="PopFi">
-            </a>
+            <div>
+                <a href="https://www.popfi.com.br" target="_blank">
+                    <img src="https://popfi.com.br/admin/midia/a2ce82442eba86270c325711349068b6.png" alt="Imagem 5">
+                </a>
+            </div>
         </div>
     </center>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- JS do Fotorama -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.js"></script>
-
-    <!-- Script personalizado para garantir que os links funcionem -->
+    <!-- JS do Slick Carousel -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    
+    <!-- Inicialização do Slick Carousel -->
     <script>
-        $(document).ready(function() {
-            // Aguarda o carregamento do Fotorama
-            $('.fotorama').on('fotorama:load', function () {
-                // Adiciona um evento de clique às imagens
-                $('.fotorama__img').on('click', function(e) {
-                    // Encontra o link mais próximo (tag <a>) e redireciona
-                    const link = $(this).closest('a').attr('href');
-                    if (link) {
-                        window.open(link, '_blank'); // Abre o link em uma nova aba
-                    }
-                });
+        $(document).ready(function(){
+            $('.carrossel').slick({
+                dots: true,          // Mostra os pontos de navegação
+                infinite: true,     // Loop infinito
+                speed: 500,        // Velocidade da transição
+                slidesToShow: 1,    // Quantidade de slides visíveis
+                slidesToScroll: 1, // Quantidade de slides a rolar
+                autoplay: true,     // Autoplay ativado
+                autoplaySpeed: 3000, // Intervalo do autoplay (3 segundos)
+                arrows: true,       // Mostra setas de navegação
+                pauseOnHover: false // Não pausa ao passar o mouse
             });
         });
     </script>
