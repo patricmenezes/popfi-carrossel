@@ -47,16 +47,5 @@
     <!-- JS do Fotorama -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.js"></script>
 
-    <!-- Script para ajustar a altura do iframe -->
-    <script>
-        function ajustarAltura() {
-            let altura = document.querySelector('.fotorama').offsetHeight;
-            window.parent.postMessage({ altura: altura }, "*");
-        }
-
-        window.onload = ajustarAltura;
-        window.onresize = ajustarAltura;
-    </script>
-
 </body>
 </html>
