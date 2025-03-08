@@ -8,7 +8,6 @@
     <!-- CSS do Fotorama -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.css" rel="stylesheet">
     
-    <!-- Estilos personalizados -->
     <style>
         /* Remove margens e paddings padrão */
         body, html {
@@ -19,21 +18,7 @@
         /* Ajusta o contêiner do Fotorama */
         .fotorama {
             width: 100%;
-            height: auto; /* Altura automática com base nas imagens */
-        }
-        /* Remove espaços extras dentro do Fotorama */
-        .fotorama__wrap {
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-        /* Remove bordas e espaços extras das miniaturas */
-        .fotorama__nav--thumbs .fotorama__nav__frame {
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-        /* Remove borda ao redor das miniaturas */
-        .fotorama__thumb-border {
-            display: none !important;
+            height: auto; /* Altura automática */
         }
     </style>
 </head>
@@ -49,7 +34,6 @@
         data-maxwidth="1200" 
         data-fit="contain">
         
-        <!-- Imagens sem links e sem legendas -->
         <img src="https://popfi.com.br/admin/midia/2f67aa6f8f73d6cefbffd3cc6392bb7b.png">
         <img src="https://popfi.com.br/admin/midia/1ed987cc110e2b78715c6335e8cca3fc.png">
         <img src="https://popfi.com.br/admin/midia/940df51e332829a6c1e90191960ab432.png">
@@ -62,15 +46,16 @@
     <!-- JS do Fotorama -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.js"></script>
 
-    <!-- Script para evitar ações ao clicar nos slides -->
+    <!-- Script para ajustar a altura do iframe -->
     <script>
-        $(document).ready(function() {
-            // Desativa qualquer ação ao clicar nas imagens
-            $('.fotorama__img').on('click', function(e) {
-                e.preventDefault(); // Impede qualquer ação padrão
-                e.stopPropagation(); // Impede a propagação do evento
-            });
-        });
+        function ajustarAltura() {
+            let altura = document.querySelector('.fotorama').offsetHeight;
+            window.parent.postMessage({ altura: altura }, "*");
+        }
+
+        window.onload = ajustarAltura;
+        window.onresize = ajustarAltura;
     </script>
+
 </body>
 </html>
