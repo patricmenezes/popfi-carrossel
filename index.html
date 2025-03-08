@@ -73,5 +73,22 @@
     <!-- JS do Fotorama -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.min.js"></script>
 
+    <!-- Script personalizado para garantir que os links funcionem -->
+    <script>
+        $(document).ready(function() {
+            // Aguarda o carregamento do Fotorama
+            $('.fotorama').on('fotorama:load', function () {
+                // Adiciona um evento de clique às imagens
+                $('.fotorama__img').on('click', function(e) {
+                    // Encontra o link mais próximo (tag <a>) e redireciona
+                    const link = $(this).closest('a').attr('href');
+                    if (link) {
+                        window.open(link, '_blank'); // Abre o link em uma nova aba
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
